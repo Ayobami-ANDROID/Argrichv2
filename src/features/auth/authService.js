@@ -30,13 +30,19 @@ const accountVerify = async(userData) => {
   return response.data
 }
 
+const resendOtp = async(userData) => {
+  const response = await apiClient.post("accounts/resend-otp/", userData)
+  return response.data
+}
+
 const authService = {
   login,
   confirmOTP,
   register,
   requestPasswordChange,
   requestPasswordConfirm,
-  accountVerify
+  accountVerify,
+  resendOtp
 };
 
 export default authService;

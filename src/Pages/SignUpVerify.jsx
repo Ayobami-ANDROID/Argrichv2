@@ -5,11 +5,13 @@ import backicon from "../images/icons/back.svg";
 import { useDispatch } from "react-redux";
 import {
   confirmOTP,
+  resendotp,
   requestPasswordChange,
   accountVerify,
 
 } from "../features/auth/authSlice";
 import secureLocalStorage from "react-secure-storage";
+import { toast } from "react-toastify";
 
 const SignUpVerify = () => {
     const navigate = useNavigate();
@@ -91,9 +93,10 @@ const SignUpVerify = () => {
           const value = {
             email: secureLocalStorage.getItem("email"),
           };
-          await dispatch(requestPasswordChange(value)).unwrap();
-          navigate("/changepassword/confirm-otp");
+          await dispatch(resendotp(value)).unwrap();
+          // navigate("/changepassword/confirm-otp");
           console.log("OTP Resent");
+          toast.success("otp resent ")
           setResendTimer(60); // Reset the timer
           setIsResendActive(false); // Disable the button again
         } catch (error) {

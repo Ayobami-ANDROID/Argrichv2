@@ -110,6 +110,27 @@ export const accountVerify = createAsyncThunk(
   }
 )
 
+export const resendotp = createAsyncThunk(
+  "resend-otp",
+  async(userData,thunkAPI) => {
+    try {
+      const response = await authService.resendOtp(userData)
+      return response
+    } catch (error) {
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/login')
+    }
+    else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+    }
+    return thunkAPI.rejectWithValue(
+      error.response?.data || "An error occurred"
+    );
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -189,6 +210,15 @@ const authSlice = createSlice({
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.isLoading = false;
+      })
+      .addCase(resendotp.rejected,(state,action)=> {
+        state.isLoading = false;
+      })
+      .addCase(resendotp.pending,(state,action) => {
+        state.isLoading = true
+      } )
+      .addCase(resendotp.fulfilled,(state,action) => {
+        state.isLoading = true
       })
   },
 });

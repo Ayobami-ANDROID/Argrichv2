@@ -35,6 +35,11 @@ const resendOtp = async(userData) => {
   return response.data
 }
 
+const feedback = async(userData) => {
+  const response = await apiClient.post("/accounts/feedback/",userData)
+  return response.data
+}
+
 const authService = {
   login,
   confirmOTP,
@@ -42,7 +47,8 @@ const authService = {
   requestPasswordChange,
   requestPasswordConfirm,
   accountVerify,
-  resendOtp
+  resendOtp,
+  feedback
 };
 
 export default authService;

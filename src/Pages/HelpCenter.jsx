@@ -1,7 +1,29 @@
-import React from "react";
+import React,{useState} from "react";
 import icon1 from "../images/icons/icon1.svg";
 import icon2 from "../images/icons/icon2.svg";
+import { feedBack } from "../features/auth/authSlice";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 const HelpCenter = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [suggestions,setSuggestions] = useState('')
+
+
+  const submit = async () => {
+    try {
+      const body = {
+        message:suggestions
+      }
+      await dispatch(feedBack(body)).unwrap();
+      toast.success('feedback submitted Succesfully')
+      setSuggestions('')
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
   return (
     <div>
       <div className="border-t  ">
@@ -33,11 +55,16 @@ const HelpCenter = () => {
             <div className="flex flex-col  max-w-[422px] gap-4 w-full">
               <textarea
                 name=""
+                value={suggestions}
                 id=""
                 placeholder="Have anything to tell us?"
                 className="max-w-[422px] placeholder:text-[#ACACAC] font-medium placeholder:font-medium font-manrope text-[16px] focus:outline-none p-4  w-full bg-[#F2F2F2] border border-[#D0D5DD] rounded-[5px] min-h-[177px]"
+                onChange={(e) =>  setSuggestions(e.target.value)}
               ></textarea>
             </div>
+          </div>
+          <div className="flex justify-end mt-6">
+            <button className="bg-[#005C2D] text-white py-2 px-8 mr-2  rounded-[20px]" onClick={submit}>Submit</button>
           </div>
         </div>
       </div>

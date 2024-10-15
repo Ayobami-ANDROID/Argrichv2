@@ -131,6 +131,28 @@ export const resendotp = createAsyncThunk(
   }
 )
 
+
+export const feedBack = createAsyncThunk(
+  "feedback",
+  async(userData,thunkAPI) => {
+    try {
+      const response = await authService.feedback(userData)
+      return response
+    } catch (error) {
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/login')
+    }
+    else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+    }
+    return thunkAPI.rejectWithValue(
+      error.response?.data || "An error occurred"
+    );
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -219,6 +241,15 @@ const authSlice = createSlice({
       } )
       .addCase(resendotp.fulfilled,(state,action) => {
         state.isLoading = true
+      })
+      .addCase(feedBack.pending,(state,action)=>{
+        state.isLoading = true;
+      })
+      .addCase(feedBack.rejected,(state,action) => {
+        state.isLoading = false
+      })
+      .addCase(feedBack.fulfilled,(state,action) => {
+        state.isLoading = false
       })
   },
 });

@@ -79,6 +79,7 @@ const Signup = () => {
         if (p3) parts.push(" " + p3);
         return parts.join("");
       });
+  };
   
   return (
     <div className="min-h-screen bg-[#F5F5F5] grid lg:grid-cols-2  gap-4 p-4">

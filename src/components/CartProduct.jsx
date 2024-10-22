@@ -18,7 +18,14 @@ const CartProduct = ({ product }) => {
       await dispatch(deleteCart(id)).unwrap();
       await dispatch(getCart({ page_size:page_size, page: (currentPage)})).unwrap();
     } catch (error) {
-      console.error("Error deleting item:", error);
+     
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/auth/login')
+      }
+      else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+      }
     }
   };
 

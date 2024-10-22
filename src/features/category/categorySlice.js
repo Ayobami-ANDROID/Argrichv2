@@ -9,7 +9,7 @@ export const getCategory = createAsyncThunk(
       const response = await categoryServise.getCategory();
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+      
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')

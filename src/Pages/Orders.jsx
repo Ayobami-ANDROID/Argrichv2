@@ -13,7 +13,7 @@ const Orders = () => {
   const { orders, isLoading } = useSelector((state) => state.product);
   const [openDropdown, setOpenDropdown] = useState(null);
   const dropdownRef = useRef(null);
-  console.log("log", orders);
+ 
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -44,7 +44,7 @@ const Orders = () => {
   };
 
   const handleAction = (action, orderId) => {
-    console.log(`${action} order ${orderId}`);
+  
     setOpenDropdown(null);
   };
 

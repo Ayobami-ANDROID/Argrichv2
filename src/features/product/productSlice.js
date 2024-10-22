@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk(
       const response = await productService.getProducts(page_size, page);
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+      
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -38,7 +38,7 @@ export const getSingleProduct = createAsyncThunk(
       const response = await productService.getSingleProduct(id);
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+      
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -63,7 +63,7 @@ export const createOrder = createAsyncThunk(
       
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+    
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -87,7 +87,7 @@ export const getOrder = createAsyncThunk(
       const response = await productService.getProductOrder();
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+  
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -111,7 +111,7 @@ export const getOrderById = createAsyncThunk(
       const response = await productService.getProductOrderById(id);
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+     
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -135,7 +135,7 @@ export const getSearchProduct = createAsyncThunk(
       const response = await productService.getSearchProduct(name, search,page_size,page);
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail);
+      
       if (
         error?.response?.data?.detail ===
         "Authentication credentials were not provided."
@@ -174,11 +174,11 @@ const productSlice = createSlice({
         state.isLoading = false;
         state.products = action.payload.results;
         state.count = action.payload.count;
-        console.log("getProduct", action.payload);
+        
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.isLoading = false;
-        console.log("getProduct", action.payload);
+      
       })
       .addCase(getSingleProduct.pending, (state, action) => {
         state.isLoading = true;
@@ -221,7 +221,7 @@ const productSlice = createSlice({
         state.isLoading = false;
         const { results } = action.payload;
         state.orders = results;
-        console.log("action.payload", action.payload);
+       
       })
       .addCase(getOrderById.pending, (state, action) => {
         state.isLoading = ture;

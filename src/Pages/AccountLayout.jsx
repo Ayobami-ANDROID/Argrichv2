@@ -17,11 +17,11 @@ const AccountLayout = () => {
   const { isOpen, isOpen1, isOpen2, isOpen3 } = useSelector(
     (state) => state.deleteAccount
   );
-  console.log("product",product.isLoading);
+  
   
   const { token } = useSelector((state) => state.auth);
   const { user, isLoading } = useSelector((state) => state.account);
-console.log("token", token?.access);
+
 
   if (!token?.access) {
     return <Navigate to="/login" replace />;

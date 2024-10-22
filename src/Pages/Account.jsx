@@ -21,7 +21,7 @@ import { PulseLoader } from "react-spinners";
 const Account = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.account);
-  console.log("user", user);
+
   useEffect(() => {
     dispatch(getUserProfile());
   }, []);
@@ -34,7 +34,7 @@ const Account = () => {
     },
     validationSchema: changePasswordSchema,
     onSubmit: (values) => {
-      console.log("values", values);
+    
       dispatch(
         changePassword({
           oldPassword: values.old_password,
@@ -57,7 +57,7 @@ const Account = () => {
     validationSchema: editProfileValidateSchema,
     enableReinitialize: true,
     onSubmit: (values) => {
-      console.log("values", values);
+     
       dispatch(editUserProfile(values));
       dispatch(getUserProfile());
     },

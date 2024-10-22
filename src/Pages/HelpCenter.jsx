@@ -20,7 +20,14 @@ const HelpCenter = () => {
       toast.success('feedback submitted Succesfully')
       setSuggestions('')
     } catch (error) {
-      console.log(error)
+   
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/login')
+    }
+    else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+    }
     }
     
   }

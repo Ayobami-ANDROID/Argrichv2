@@ -11,7 +11,7 @@ import { getUserProfile } from "../../features/account/accountSlice";
 const RightSide = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.account);
-  console.log("user", user);
+  
 
   useEffect(() => {
     dispatch(getUserProfile()).unwrap();

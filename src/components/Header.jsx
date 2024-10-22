@@ -29,7 +29,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.account);
   const [value, setValue] = useState("");
-  console.log("user", user);
+ 
 
   const page_size = 6; // Increased page_size for better pagination example
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  console.log(user, "user");
+  
 
   useEffect(() => {
     dispatch(getUserProfile());
@@ -55,8 +55,17 @@ const Header = () => {
         await dispatch(getCart({ page_size:page_size, page: (currentPage)})).unwrap()
         await dispatch(getUserProfile()).unwrap();
       } catch (error) {
+
+        if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+          toast.error(error?.response?.data?.detail)
+          window.location.replace('/login')
+      }
+      else {
+          toast.error(error?.response?.data?.detail || 'An error Occured')
+      }
       
-      console.log("error");}
+     
+    }
     };
 
     fetchProduct();

@@ -16,7 +16,7 @@ const Cart = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { cart,count } = useSelector((state) => state.cart);
   const totalPages = Math.ceil(count / page_size);
-  console.log(cart);
+  
 
   useEffect(() => {
     const cartProduct = async () => {
@@ -24,7 +24,7 @@ const Cart = () => {
         // cartReset()
          await dispatch(getCart({ page_size:page_size, page: (currentPage)})).unwrap();
 
-        console.log("values", values);
+        
       } catch (error) { }
     };
 
@@ -60,8 +60,7 @@ const Cart = () => {
 
 
     for (let i = startPage; i <= endPage; i++) {
-      console.log(i)
-      console.log(currentPage)
+     
       pages.push(
         <button
           key={i}

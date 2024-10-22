@@ -6,7 +6,7 @@ import { deleteUserProfile } from "../features/account/accountSlice";
 const Other = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.account);
-  console.log("user", user);
+
 
   return (
     <div className="border-t  ">

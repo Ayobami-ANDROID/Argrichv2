@@ -10,7 +10,7 @@ export const getUserProfile = createAsyncThunk(
       // toast.success("Success");
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+      
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -19,7 +19,7 @@ export const getUserProfile = createAsyncThunk(
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }
       // toast.error(error.response?.data?.message || "An error occurred");
-      console.log(error);
+ 
       return thunkAPI.rejectWithValue(
         error.response?.data?.message || "An error occurred"
       );
@@ -36,7 +36,7 @@ export const editUserProfile = createAsyncThunk(
       return response;
     } catch (error) {
    
-      console.log(error?.response?.data?.detail)
+      
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -60,7 +60,7 @@ export const deleteUserProfile = createAsyncThunk(
       // toast.success("Success");
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+     
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -84,8 +84,15 @@ export const changePassword = createAsyncThunk(
       // toast.success("Success");
       return response;
     } catch (error) {
-      console.log(error.response.data.error);
+  
       // toast.error(error.response?.data.error || "An error occurred");
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/login')
+    }
+    else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+    }
       return thunkAPI.rejectWithValue(
         error.response?.data || "An error occurred"
       );
@@ -109,7 +116,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        // console.log("action.payload", action.payload);
+      
         state.user = action.payload;
       })
       .addCase(getUserProfile.rejected, (state, action) => {
@@ -120,7 +127,6 @@ const authSlice = createSlice({
       })
       .addCase(editUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("edited", action.payload);
         state.user = action.payload;
       
         

@@ -13,11 +13,11 @@ export const getCart = createAsyncThunk(
   async ({page_size,page}, thunkAPI) => {
     try {
       const response = await cartService.getCart(page_size,page);
-      console.log("respons", response);
+      
       
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+      
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -40,7 +40,7 @@ export const postCart = createAsyncThunk(
       toast.success("Added to Cart!");
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+    
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -63,7 +63,7 @@ export const putCart = createAsyncThunk(
       toast.success("Cart updated successfully!");
       return response;
     } catch (error) {
-      console.log(error?.response?.data?.detail)
+     
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -87,7 +87,7 @@ export const deleteCart = createAsyncThunk(
       return response;
     } catch (error) {
     
-      console.log(error?.response?.data?.detail)
+      
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
@@ -125,7 +125,7 @@ const cartSlice = createSlice({
        
         state.cart =action.payload.results;
         state.count = action.payload.count
-        console.log("get cart", action.payload);
+       
       })
       .addCase(postCart.pending, (state, action) => {
         state.isLoading = true;
@@ -136,16 +136,16 @@ const cartSlice = createSlice({
       .addCase(postCart.fulfilled, (state, action) => {
         state.isLoading = false;
         state.cart.push(action.payload)
-        console.log("add cart", action.payload);
+        
       })
       .addCase(putCart.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("updated cart", action.payload);
+      
       })
       .addCase(deleteCart.fulfilled, (state, action) => {
         state.isLoading = false;
       
-        console.log("deleted Carts", action.payload);
+        
       });
   },
 });

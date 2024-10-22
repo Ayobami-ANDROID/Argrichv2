@@ -26,8 +26,7 @@ const ConfirmOtp = () => {
 
       newOtp[index] = value; // Update the OTP state
       setOtp(newOtp);
-      console.log("otp", newOtp);
-
+   
       // Move to the next input field if the current one is filled
       if (index < otp.length - 1) {
         setActiveOTPIndex(index + 1);
@@ -49,7 +48,7 @@ const ConfirmOtp = () => {
         setActiveOTPIndex(index - 1);
         setOtp(newOtp);
 
-        console.log("otp", newOtp);
+        
       } else if (index > 0) {
         // Move focus to the previous input field
         setActiveOTPIndex(index - 1);
@@ -59,7 +58,7 @@ const ConfirmOtp = () => {
       newOtp[index] = value;
       newOtp[index] = "";
       setOtp(newOtp);
-      console.log("otp", newOtp);
+     
     }
   };
   const handleOnclick = (e, index) => {
@@ -93,7 +92,6 @@ const ConfirmOtp = () => {
         };
         await dispatch(requestPasswordChange(value)).unwrap();
         navigate("/changepassword/confirm-otp");
-        console.log("OTP Resent");
         setResendTimer(60); // Reset the timer
         setIsResendActive(false); // Disable the button again
       } catch (error) {
@@ -121,7 +119,14 @@ const ConfirmOtp = () => {
       ).unwrap();
       navigate("/changepassword/create-newpassword");
     } catch (error) {
-      console.log("Registration failed:", error);
+     
+      if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
+        toast.error(error?.response?.data?.detail)
+        window.location.replace('/login')
+    }
+    else {
+        toast.error(error?.response?.data?.detail || 'An error Occured')
+    }
     }
   };
 

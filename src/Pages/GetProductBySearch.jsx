@@ -59,8 +59,7 @@ const GetProductBySearch = () => {
     
     
         for (let i = startPage; i <= endPage; i++) {
-          console.log(i)
-          console.log(currentPage)
+       
           pages.push(
             <button
               key={i}

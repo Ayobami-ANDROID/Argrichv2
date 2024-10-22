@@ -9,7 +9,7 @@ const apiClient = axios.create({
 // Request interceptor to add authorization header
 apiClient.interceptors.request.use((config) => {
   const token = store.getState().auth.token;
-  console.log("intereqiuest", store.getState().auth.token);
+  
 
   if (token) {
     config.headers.Authorization = `Bearer ${token.access}`;
@@ -29,7 +29,7 @@ apiClient.interceptors.response.use(
 
       try {
         const refreshToken = store.getState().auth.token.refresh;
-        console.log("interesponse", refreshToken);
+        
         if (refreshToken) {
           // Make a request to refresh the token
           const { data } = await axios.post(

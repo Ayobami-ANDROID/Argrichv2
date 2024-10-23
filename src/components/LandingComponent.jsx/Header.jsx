@@ -11,7 +11,7 @@ const Header = () => {
         <Link to="/landing"><img src={Logo} className="w-28 object-contain" /></Link>
       </div>
       <div className="gap-x-4 flex items-center font-manrope text-[#0F4400] font-medium ">
-        <Link className=""> About</Link>
+        <a className="cursor-pointer" href="#content"> About</a>
         <Link className="">Product Categories</Link>
         <Link to="/homepage/" className=""> Online Store</Link>
       </div>

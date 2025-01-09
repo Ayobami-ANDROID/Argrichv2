@@ -28,42 +28,105 @@ const LiveStock = () => {
 
   const navigate = useNavigate()
   return (
-    <div className=" mt-20 md:mt-10">
-      <div className=" lg:pl-20 text-center lg:text-start font-manrope font-semibold text-[#004802] leading-[27.32px] md:leading-[46.44px] text-[20px] md:text-[34px] w-full">
+    // <div className=" mt-20 md:mt-10">
+    //   <div className=" lg:pl-20 text-center lg:text-start font-manrope font-semibold text-[#004802] leading-[27.32px] md:leading-[46.44px] text-[20px] md:text-[34px] w-full">
+    //     <span>We raise a variety of livestock</span>
+    //   </div>
+
+    //   <Splide
+    //     className="mt-10 flex items-center"
+    //     options={{
+    //       type: "loop",
+    //       drag: "free",
+    //       // gap: "100px",
+    //       pagination: false,
+    //       arrows: false,
+    //       perPage: 4,
+    //       autoScroll: {
+    //         pauseOnHover: false,
+    //         pauseOnFocus: false,
+    //         rewind: true,
+    //         speed: -0.5,
+    //       },
+    //     }}
+    //     extensions={{ AutoScroll }}
+    //     aria-label="Livestock Carousel"
+    //   >
+    //     {images.map(({ src, alt, label }, index) => (
+    //       <SplideSlide key={index} className="flex flex-col w-full gap-4 mx-4 ">
+    //         <img src={src} alt={alt} className="lg:object-contain  md:w-[15rem]  object-cover" />
+    //         <div className="font-manrope w-full text-center  md:text-start text-[14px] md:text-[28px] font-semibold text-[#0F4400]">
+    //           {label}
+    //         </div>
+    //       </SplideSlide>
+    //     ))}
+    //   </Splide>
+
+    //   <div className="w-full mx-auto px-20 mt-20 lg:block hidden">
+    //     <button onClick={() => navigate('/homepage/')} className="shadow-[9px_0px_12.8px_rgba(0,_0,_0,_0.25)] text-white rounded-lg bg-[#0F4400] px-[20px] py-[12px]">
+    //       Argrich Store
+    //     </button>
+    //   </div>
+    // </div>
+    <div className="mt-20 md:mt-10">
+      <div className="lg:pl-20 text-center lg:text-start font-manrope font-semibold text-[#004802] leading-[27.32px] md:leading-[46.44px] text-[20px] md:text-[34px] w-full">
         <span>We raise a variety of livestock</span>
       </div>
 
       <Splide
-        className="mt-10 flex items-center"
+        className="mt-10"
         options={{
           type: "loop",
-          drag: "free",
-          // gap: "100px",
+          drag: true,
+          gap: "2rem",
           pagination: false,
           arrows: false,
           perPage: 4,
+          perMove: 1,
+          speed: 1000,
+          easing: "cubic-bezier(0.25, 1, 0.5, 1)",
           autoScroll: {
             pauseOnHover: false,
             pauseOnFocus: false,
-            rewind: true,
-            speed: -0.5,
+            rewind: false,
+            speed: 1,
+          },
+          breakpoints: {
+            1024: {
+              perPage: 3,
+            },
+            768: {
+              perPage: 2,
+            },
+            640: {
+              perPage: 1,
+            },
           },
         }}
         extensions={{ AutoScroll }}
         aria-label="Livestock Carousel"
       >
         {images.map(({ src, alt, label }, index) => (
-          <SplideSlide key={index} className="flex flex-col w-full gap-4 mx-4 ">
-            <img src={src} alt={alt} className="lg:object-contain  md:w-[15rem]  object-cover" />
-            <div className="font-manrope w-full text-center  md:text-start text-[14px] md:text-[28px] font-semibold text-[#0F4400]">
-              {label}
+          <SplideSlide key={index} className="flex flex-col items-center">
+            <div className="w-full px-4">
+              <img 
+                src={src} 
+                alt={alt} 
+                className="w-full md:w-[15rem] h-auto object-cover mx-auto"
+              />
+              <div className="font-manrope w-full text-center md:text-start text-[14px] md:text-[28px] font-semibold text-[#0F4400] mt-4">
+                {label}
+              </div>
             </div>
           </SplideSlide>
         ))}
       </Splide>
 
       <div className="w-full mx-auto px-20 mt-20 lg:block hidden">
-        <button onClick={() => navigate('/homepage/')} className="shadow-[9px_0px_12.8px_rgba(0,_0,_0,_0.25)] text-white rounded-lg bg-[#0F4400] px-[20px] py-[12px]">
+        <button 
+          onClick={() => navigate('/homepage/')} 
+          className="shadow-[9px_0px_12.8px_rgba(0,_0,_0,_0.25)] text-white rounded-lg bg-[#0F4400] px-[20px] py-[12px]"
+        >
           Argrich Store
         </button>
       </div>

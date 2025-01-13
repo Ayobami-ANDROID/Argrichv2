@@ -117,6 +117,22 @@ const Login = () => {
             </div>
           </form>
 
+           <div className="relative border-t-2 border-[#E6E6E6]  w-full my-8 ">
+                        <div></div>
+                        <h1 className="text-center  absolute bg-[#F5F5F5] text-[#828282]  w-[1/2] mt-[-17px] left-[30%]">
+                          or continue with
+                        </h1>
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          className="bg-[#DBDBDB]  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full items-center text-[#000000] rounded-[5px] flex justify-center p-4"
+                        >
+                          <img src={Google} className="mr-2"></img>
+                          Google
+                        </button>
+                      </div>
+
           <div className="mt-4 flex justify-center">
             <p className="text-[12px] text-[#000] gap-1 flex items-center">
               Don't have an account?

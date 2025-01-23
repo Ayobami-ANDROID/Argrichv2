@@ -15,6 +15,7 @@ import secureLocalStorage from "react-secure-storage";
 import { authReset, login, loginWithGoogle } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
+import { useGoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [toggle, settoggle] = useState(false);
@@ -41,14 +42,36 @@ const Login = () => {
     },
   });
 
-  const googleLogin = async () => {
-    try {
-      await dispatch(loginWithGoogle()).unwrap();
-      navigate("/homepage/");
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
-  }
+  
+    const googleLogin = useGoogleLogin({
+      onSuccess: async (codeResponse) => {
+        try {
+          // const response = await axios.post('/api/accounts/google', {
+          //   access_token: codeResponse.access_token,
+          //   code: codeResponse.code,
+          //   id_token: codeResponse.id_token
+          // });
+
+          const response = await dispatch(loginWithGoogle(
+            {
+              access_token: codeResponse.access_token,
+              code: codeResponse.code,
+              id_token: codeResponse.id_token
+            }
+          )).unwrap();
+  
+          // Handle successful authentication
+          console.log(response.data);
+        } catch (error) {
+          console.error('Authentication failed', error);
+        }
+      },
+      onError: (error) => {
+        console.error('Login Failed:', error);
+      },
+      flow: 'auth-code', // This ensures we get all the required tokens
+    });
+  
 
   return (
     <div className="min-h-screen bg-[#F5F5F5] grid lg:grid-cols-2  p-4">

@@ -12,7 +12,7 @@ import countries from "../../Services/callcode.json";
 import Google from "../images/Google.png";
 import Crop from "../images/Crop.jpg";
 import secureLocalStorage from "react-secure-storage";
-import { authReset, login } from "../features/auth/authSlice";
+import { authReset, login, loginWithGoogle } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { PulseLoader } from "react-spinners";
 
@@ -40,6 +40,15 @@ const Login = () => {
       }
     },
   });
+
+  const googleLogin = async () => {
+    try {
+      await dispatch(loginWithGoogle()).unwrap();
+      navigate("/homepage/");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F5F5] grid lg:grid-cols-2  p-4">
@@ -117,21 +126,22 @@ const Login = () => {
             </div>
           </form>
 
-           <div className="relative border-t-2 border-[#E6E6E6]  w-full my-8 ">
-                        <div></div>
-                        <h1 className="text-center  absolute bg-[#F5F5F5] text-[#828282]  w-[1/2] mt-[-17px] left-[30%]">
-                          or continue with
-                        </h1>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          className="bg-[#DBDBDB]  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full items-center text-[#000000] rounded-[5px] flex justify-center p-4"
-                        >
-                          <img src={Google} className="mr-2"></img>
-                          Google
-                        </button>
-                      </div>
+          <div className="relative border-t-2 border-[#E6E6E6]  w-full my-8 ">
+            <div></div>
+            <h1 className="text-center  absolute bg-[#F5F5F5] text-[#828282]  w-[1/2] mt-[-17px] left-[30%]">
+              or continue with
+            </h1>
+          </div>
+          <div>
+            <button
+              // type="button"
+              onClick={googleLogin}
+              className="bg-[#DBDBDB]  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full items-center text-[#000000] rounded-[5px] flex justify-center p-4"
+            >
+              <img src={Google} className="mr-2"></img>
+              Google
+            </button>
+          </div>
 
           <div className="mt-4 flex justify-center">
             <p className="text-[12px] text-[#000] gap-1 flex items-center">

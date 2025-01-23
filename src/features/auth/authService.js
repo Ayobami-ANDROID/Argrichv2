@@ -40,6 +40,12 @@ const feedback = async(userData) => {
   return response.data
 }
 
+
+const google = async(userData) =>{
+  const response = await apiClient.post("/accounts/google/",userData)
+  return response.data
+}
+
 const authService = {
   login,
   confirmOTP,
@@ -48,7 +54,8 @@ const authService = {
   requestPasswordConfirm,
   accountVerify,
   resendOtp,
-  feedback
+  feedback, 
+  google,
 };
 
 export default authService;

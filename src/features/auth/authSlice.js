@@ -41,6 +41,23 @@ export const login = createAsyncThunk(
   }
 );
 
+export const loginWithGoogle = createAsyncThunk(
+  "accounts/google/",
+  async (userData, thunkAPI) => {
+    secureLocalStorage.clear();
+    try {
+      const response = await authService.google(userData);
+      return response;
+    } catch (error) {
+  
+      toast.error(error.response?.data.error || "An error occurred");
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "An error occurred"
+      );
+    }
+  }
+);
+
 export const requestPasswordChange = createAsyncThunk(
   "accounts/reset/",
   async (userData, thunkAPI) => {
@@ -194,6 +211,21 @@ const authSlice = createSlice({
         secureLocalStorage.setItem("user", action.payload.user);
       })
       .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(loginWithGoogle.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(loginWithGoogle.fulfilled, (state, action) => {
+        state.isLoading = false;
+        
+        state.user = action.payload.user;
+        state.token = action.payload.tokens;
+        
+        secureLocalStorage.setItem("token", action.payload.tokens);
+        secureLocalStorage.setItem("user", action.payload.user);
+      })
+      .addCase(loginWithGoogle.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(requestPasswordChange.pending, (state, action) => {

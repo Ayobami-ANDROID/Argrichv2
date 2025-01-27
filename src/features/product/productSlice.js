@@ -31,6 +31,29 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+export const getInitializePayment = createAsyncThunk(
+  "/payment/",
+   async(_,thunkAPI) => {
+    try {
+      const response = await productService.initializePayment()
+      return response
+    } catch (error) {
+      if (
+        error?.response?.data?.detail ===
+        "Authentication credentials were not provided."
+      ) {
+        toast.error(error?.response?.data?.detail);
+        window.location.replace("/login");
+      } else {
+        toast.error(error?.response?.data?.detail || "An error Occured");
+      }
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "An error occurred"
+      );
+    }
+   }
+)
+
 export const getSingleProduct = createAsyncThunk(
   "products/id/",
   async (id, thunkAPI) => {
@@ -232,7 +255,16 @@ const productSlice = createSlice({
       .addCase(getOrderById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.order = action.payload;
-      });
+      })
+      .addCase(getInitializePayment.pending,(state,action)=>{
+        state.isLoading = true;
+      })
+      .addCase(getInitializePayment.rejected,(state,action) => {
+        state.isLoading = false
+      })
+      .addCase(getInitializePayment.fulfilled,(state,action) => {
+        state.isLoading = false
+      })
   },
 });
 

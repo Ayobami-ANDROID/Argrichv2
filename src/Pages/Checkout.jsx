@@ -9,7 +9,7 @@ import deleteimg from "../images/delete.svg";
 import CheckoutItem from "../components/CheckoutItem";
 import { getCart } from "../features/cart/cartSlice";
 import PaystackPop from '@paystack/inline-js'
-import { createOrder } from "../features/product/productSlice";
+import { createOrder,getInitializePayment } from "../features/product/productSlice";
 import { cartReset } from "../features/cart/cartSlice";
 
 const Checkout = () => {
@@ -110,10 +110,10 @@ const Checkout = () => {
                 payment_method: "pay_now"
             }
 
-           const result = await dispatch(createOrder(body)).unwrap()
+           const result = await dispatch(getInitializePayment()).unwrap()
            
-            const popup =  new PaystackPop()
-            popup.resumeTransaction(result.access_code)
+            // const popup =  new PaystackPop()
+            // popup.resumeTransaction(result.access_code)
            
             navigate('/homepage/cart')
 

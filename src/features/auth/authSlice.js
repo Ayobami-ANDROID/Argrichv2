@@ -5,8 +5,6 @@ import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
 
-
-
 export const register = createAsyncThunk(
   "accounts/signup/",
   async (userData, thunkAPI) => {
@@ -27,12 +25,21 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
   "accounts/login/",
   async (userData, thunkAPI) => {
+
     secureLocalStorage.clear();
+    secureLocalStorage.setItem("email", userData.email);
+    
     try {
       const response = await authService.login(userData);
       return response;
     } catch (error) {
-  
+      console.log(error)
+     
+      if(error.response.data.error === "Activate your account"){
+     
+        window.location.replace('/signupverify')
+        
+      }
       toast.error(error.response?.data.error || "An error occurred");
       return thunkAPI.rejectWithValue(
         error.response?.data || "An error occurred"

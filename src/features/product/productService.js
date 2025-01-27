@@ -30,12 +30,18 @@ const getProductOrderById = async (id) => {
   return response.data
 }
 
+const initializePayment = async() => {
+  const response = await apiClient.post('/products/paystack-initalize-payment/')
+  return response.data
+}
+
 const productService = {
   getProducts,
   getSingleProduct,
   getSearchProduct,
   createProductOrder,
   getProductOrder,
-  getProductOrderById
+  getProductOrderById,
+  initializePayment
 };
 export default productService;

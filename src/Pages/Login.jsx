@@ -32,8 +32,10 @@ const Login = () => {
     },
     validationSchema: signinValidate,
     onSubmit: async (values) => {
+      secureLocalStorage.setItem("email", values.email)
       dispatch(authReset());
       try {
+
         await dispatch(login(values)).unwrap();
         navigate("/homepage/");
       } catch (error) {

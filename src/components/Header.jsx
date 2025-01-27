@@ -52,8 +52,11 @@ const Header = () => {
     const fetchProduct = async () => {
       try {
         await dispatch(getCategory()).unwrap();
-        await dispatch(getCart({ page_size:page_size, page: (currentPage)})).unwrap()
-        await dispatch(getUserProfile()).unwrap();
+        if(token){
+          await dispatch(getCart({ page_size:page_size, page: (currentPage)})).unwrap()
+          await dispatch(getUserProfile()).unwrap();
+        }
+       
       } catch (error) {
 
         if (error?.response?.data?.detail === "Authentication credentials were not provided.") {

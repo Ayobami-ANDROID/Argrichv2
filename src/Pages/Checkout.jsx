@@ -105,19 +105,29 @@ const Checkout = () => {
     };
 
     const handleSubmit = async () =>{
-        if(payNow === true){
-            const body = {
-                payment_method: "pay_now"
-            }
-
-           const result = await dispatch(getInitializePayment()).unwrap()
-           
-            // const popup =  new PaystackPop()
-            // popup.resumeTransaction(result.access_code)
-           
-            navigate('/homepage/cart')
-
+      if(payNow === true){
+        const body = {
+            payment_method: "pay_now"
         }
+    
+        const result = await dispatch(getInitializePayment()).unwrap()
+        console.log(result)
+        
+        const popup = new PaystackPop()
+        popup.resumeTransaction(result.access_code, {
+          onSuccess: () => {
+              dispatch(createOrder(body));
+              navigate('/homepage/cart');
+          },
+          onCancel: () => {
+              toast.error("Payment unsuccessful");
+          },
+          onClose: () => {
+              toast.error("Payment unsuccessful");
+          }
+      });
+    }
+
         else if(payOnDelivery === true){
             const body = {
                 payment_method: "on_delivery"
@@ -130,6 +140,9 @@ const Checkout = () => {
           toast.error('Select a payment method')
         }
     }
+
+
+    
 
     return (
         <div className="px-10 bg-[#F5F5F5]  pt-10 pb-20 flex-1">

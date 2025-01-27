@@ -12,8 +12,8 @@ export const getUserProfile = createAsyncThunk(
     } catch (error) {
       
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
-          toast.error(error?.response?.data?.detail)
-          window.location.replace('/login')
+          // toast.error(error?.response?.data?.detail)
+          // window.location.replace('/login')
       }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
@@ -38,8 +38,8 @@ export const editUserProfile = createAsyncThunk(
    
       
       if (error?.response?.data?.detail === "Authentication credentials were not provided.") {
-          toast.error(error?.response?.data?.detail)
-          window.location.replace('/login')
+          toast.error(`${error?.response?.data?.detail} please log in`)
+          
       }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')

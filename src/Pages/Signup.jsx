@@ -13,8 +13,9 @@ import Google from "../images/Google.png";
 import Crop from "../images/Crop.jpg";
 import secureLocalStorage from "react-secure-storage";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../features/auth/authSlice";
+import { register, loginWithGoogle  } from "../features/auth/authSlice";
 import { PulseLoader } from "react-spinners";
+import { useGoogleLogin } from '@react-oauth/google';
 
 
 const Signup = () => {
@@ -55,6 +56,32 @@ const Signup = () => {
         console.error("Registration failed:", error);
       }
     },
+  });
+
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const response = await dispatch(loginWithGoogle({
+          access_token: tokenResponse.access_token,
+          refresh_token: tokenResponse.refresh_token
+        })).unwrap();
+        console.log(response)
+        secureLocalStorage.setItem("token", response);
+        navigate('/homepage')
+        
+        console.log(response.data);
+      } catch (error) {
+        console.error('Authentication failed', error);
+      }
+    },
+    onError: (error) => {
+      console.error('Login Failed:', error);
+    },
+    flow: 'implicit',
+    access_type: 'offline', // This is required for refresh token
+    prompt: 'consent',      // Forces the consent screen to appear
+    scope: 'email profile', // Add any additional scopes you need
   });
 
   const country = countries.map((item, index) => {
@@ -331,6 +358,7 @@ const Signup = () => {
             <div>
               <button
                 type="button"
+                onClick={googleLogin}
                 className="bg-[#DBDBDB]  shadow-[0_1px_2px_0_rgba(16,_24,_40,_0.05)] w-full items-center text-[#000000] rounded-[5px] flex justify-center p-4"
               >
                 <img src={Google} className="mr-2"></img>

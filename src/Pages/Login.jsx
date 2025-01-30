@@ -55,8 +55,8 @@ const Login = () => {
           access_token: tokenResponse.access_token,
           refresh_token: tokenResponse.refresh_token
         })).unwrap();
-        console.log(response.key)
-        secureLocalStorage.setItem("token", response.key);
+        console.log(response)
+        secureLocalStorage.setItem("token", response);
         navigate('/homepage')
         
         console.log(response.data);

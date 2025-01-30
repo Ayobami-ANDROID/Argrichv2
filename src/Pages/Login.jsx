@@ -45,13 +45,15 @@ const Login = () => {
   });
 
   
+  // const googleLogin = useGoogleLogin({
+
+
   const googleLogin = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
+    onSuccess: async (tokenResponse) => {
       try {
         const response = await dispatch(loginWithGoogle({
-          access_token: codeResponse.access_token,
-          code: codeResponse.code,
-          id_token: codeResponse.id_token
+          access_token: tokenResponse.access_token,
+          refresh_token: tokenResponse.refresh_token
         })).unwrap();
         
         console.log(response.data);
@@ -62,9 +64,30 @@ const Login = () => {
     onError: (error) => {
       console.error('Login Failed:', error);
     },
-    // Remove or modify the flow parameter to use implicit flow
-    scope: 'openid email profile',  // Request the scopes you need
+    flow: 'implicit',
+    access_type: 'offline', // This is required for refresh token
+    prompt: 'consent',      // Forces the consent screen to appear
+    scope: 'email profile', // Add any additional scopes you need
   });
+  //   onSuccess: async (codeResponse) => {
+  //     try {
+  //       const response = await dispatch(loginWithGoogle({
+  //         access_token: codeResponse.access_token,
+  //         code: codeResponse.code,
+  //         id_token: codeResponse.id_token
+  //       })).unwrap();
+        
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error('Authentication failed', error);
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error('Login Failed:', error);
+  //   },
+  //   // Remove or modify the flow parameter to use implicit flow
+  //   scope: 'openid email profile',  // Request the scopes you need
+  // });
   
 
   return (

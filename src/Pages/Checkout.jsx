@@ -234,7 +234,7 @@ const Checkout = () => {
                         </div>
                         <div className="flex justify-between ">
                             <p>Sub Total</p>
-                            <h1> ₦{2000}</h1>
+                            <h1>₦{totalPrice.toLocaleString()}</h1>
                         </div>
                     </div>
                    <div className="flex flex-col items-center">

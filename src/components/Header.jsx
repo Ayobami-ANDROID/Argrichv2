@@ -33,12 +33,13 @@ const Header = () => {
 
   const page_size = 6; // Increased page_size for better pagination example
   const [currentPage, setCurrentPage] = useState(1);
-  const { token } = useSelector((state) => state.auth);
   const { category } = useSelector((state) => state.category);
   const { cart, count } = useSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  const token = secureLocalStorage.getItem("token")
 
   
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { store } from "./storeInjector";
 import { setToken } from "../features/auth/authSlice";
+import secureLocalStorage from "react-secure-storage";
 
 const apiClient = axios.create({
   baseURL: "https://argrich-xsnx.onrender.com/api/v1",
@@ -8,11 +9,11 @@ const apiClient = axios.create({
 
 // Request interceptor to add authorization header
 apiClient.interceptors.request.use((config) => {
-  const token = store.getState().auth.token;
+  const token = store.getState().auth.token || secureLocalStorage.getItem("token") ;
   
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token.access}`;
+    config.headers.Authorization = `Bearer ${token.access || token}`;
   }
   return config;
 });

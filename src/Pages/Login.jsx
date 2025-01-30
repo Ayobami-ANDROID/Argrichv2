@@ -45,34 +45,26 @@ const Login = () => {
   });
 
   
-    const googleLogin = useGoogleLogin({
-      onSuccess: async (codeResponse) => {
-        try {
-          // const response = await axios.post('/api/accounts/google', {
-          //   access_token: codeResponse.access_token,
-          //   code: codeResponse.code,
-          //   id_token: codeResponse.id_token
-          // });
-
-          const response = await dispatch(loginWithGoogle(
-            {
-              access_token: codeResponse.access_token,
-              code: codeResponse.code,
-              id_token: codeResponse.id_token
-            }
-          )).unwrap();
-  
-          // Handle successful authentication
-          console.log(response.data);
-        } catch (error) {
-          console.error('Authentication failed', error);
-        }
-      },
-      onError: (error) => {
-        console.error('Login Failed:', error);
-      },
-      flow: 'auth-code', // This ensures we get all the required tokens
-    });
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (codeResponse) => {
+      try {
+        const response = await dispatch(loginWithGoogle({
+          access_token: codeResponse.access_token,
+          code: codeResponse.code,
+          id_token: codeResponse.id_token
+        })).unwrap();
+        
+        console.log(response.data);
+      } catch (error) {
+        console.error('Authentication failed', error);
+      }
+    },
+    onError: (error) => {
+      console.error('Login Failed:', error);
+    },
+    // Remove or modify the flow parameter to use implicit flow
+    scope: 'openid email profile',  // Request the scopes you need
+  });
   
 
   return (

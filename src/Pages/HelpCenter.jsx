@@ -51,7 +51,7 @@ const HelpCenter = () => {
               </div>
               <div className="flex gap-x-3 items-center">
                 <img src={icon2} alt="" />
-                <p className="s">support@argrichfarms.com</p>
+                <p className="s">info@argrichfarmerschoice.com</p>
               </div>
             </div>
           </div>

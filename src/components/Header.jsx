@@ -33,14 +33,12 @@ const Header = () => {
 
   const page_size = 6; // Increased page_size for better pagination example
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const { token } = useSelector((state) => state.auth);
   const { category } = useSelector((state) => state.category);
   const { cart, count } = useSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
-  const token = secureLocalStorage.getItem("token")
 
   
 
@@ -214,14 +212,14 @@ const Header = () => {
                       </h4>
                       <a
                         onClick={(e) => handleLinkClick(e, "/account")}
-                        className="hover:text-[#008A2F] transition whitespace-nowrap flex items-center justify-between"
+                        className="hover:text-[#008A2F] transition whitespace-nowrap cursor-pointer flex items-center justify-between"
                       >
                         <IoPersonSharp size={"2.5em"} className="mr-4" />
                         my Accounts
                       </a>
                       <a
                         onClick={(e) => handleLinkClick(e, "/cart")}
-                        className=" lg:hidden sm:flex items-center text-[#000]  hover:text-[#008A2F] transition cursor-pointer relative "
+                        className=" lg:hidden sm:flex items-center text-[#000] cu  hover:text-[#008A2F] transition cursor-pointer relative "
                       >
                         <CiShoppingCart size={"1.5em"} className="mr-4" />
 
@@ -237,7 +235,7 @@ const Header = () => {
                       </a>
 
                       <li
-                        className="hover:text-[#008A2F] flex items-center transition"
+                        className="hover:text-[#008A2F] flex items-center transition cursor-pointer"
                         onClick={(e) => {
                           e.stopPropagation();
                           secureLocalStorage.clear()

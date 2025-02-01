@@ -117,7 +117,7 @@ const Checkout = () => {
         popup.resumeTransaction(result.access_code, {
           onSuccess: () => {
                dispatch(createOrder(body)).unwrap();
-              navigate('/homepage/cart');
+              navigate('/homepage/');
           },
           onCancel: () => {
               toast.error("Payment unsuccessful");

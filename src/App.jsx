@@ -28,6 +28,8 @@ import AccountLayout from "./Pages/AccountLayout";
 import Other from "./Pages/Other";
 import Orders from "./Pages/Orders";
 import Checkout from "./Pages/Checkout";
+import FeedbackPolicy from "./Pages/Feedback";
+import ReturnPolicy from "./Pages/ReturnPolicy";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,6 +40,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/feedback" element={<FeedbackPolicy/>}/>
+        <Route path="/return-policy" element={<ReturnPolicy/>}/>
         {/* <Route path="/account" element={<AccountLayout />} /> */}
         <Route path="/account" element={<AccountLayout />}>
           <Route path="" element={<Account />} />

@@ -12,6 +12,7 @@ import Cart from "./Cart";
 import Checkout from "./Checkout";
 import GetProductBySearch from "./GetProductBySearch";
 import GetProductByCategory from "./GetProductByCategory"
+import FeedbackPolicy from "./Feedback";
 
 const MainPage = () => {
   const { token } = useSelector((state) => state.auth);
@@ -30,6 +31,7 @@ const MainPage = () => {
           <Route path="/view/:id" element={<GetProduct />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/checkout" element={<Checkout/>}/>
+        
           <Route path="*" element={<NotFound pathname={"/"} />}></Route>
         </Routes>
       <Footer />

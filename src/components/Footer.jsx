@@ -48,13 +48,13 @@ const Footer = () => {
           <div className="flex flex-col">
             <h1 className="text-[#7CD032] font-bold mb-2">Help</h1>
 
-            <ul>
-              <li>Feedback</li>
-              <li>Return Policy</li>
-              <li>Track Orders</li>
-              <li>Delivery Coverage</li>
+            <ul className="flex flex-col">
+              <Link to="/feedback">Feedback</Link>
+              <Link to="/return-policy">Return Policy</Link>
+              {/* <li>Track Orders</li>
+              <li>Delivery Coverage</li> */}
               {/* <li>Contact Us</li> */}
-              <li>Security and Fraud</li>
+              {/* <li>Security and Fraud</li> */}
             </ul>
           </div>
         </div>

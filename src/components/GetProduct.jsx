@@ -123,10 +123,10 @@ const GetProduct = () => {
       </div>
       <div className="lg:flex   gap-4 justify-center ">
         <div className="flex flex-col lg:w-[50%] w-full">
-          <div className="w-full bg-[#D9D9D9] lg:h-[50vh] rounded-[10px] overflow-hidden ">
+          <div className="w-full bg-[#D9D9D9] lg:h-full rounded-[10px] overflow-hidden ">
             <img src={product?.image} className="h-full w-full" />
           </div>
-          <div className="grid grid-cols-4 gap-2 mt-4">
+          {/* <div className="grid grid-cols-4 gap-2 mt-4">
             <div className="rounded-[10px] overflow-hidden">
               <img src={product?.image} className="h-full" />
             </div>
@@ -139,7 +139,7 @@ const GetProduct = () => {
             <div className="rounded-[10px] overflow-hidden">
               <img src={product?.image} className="h-full" />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col flex-1 w-full">
           <div className="lg:mb-16 mb-8">

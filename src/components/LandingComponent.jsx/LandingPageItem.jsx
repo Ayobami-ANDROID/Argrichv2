@@ -9,7 +9,7 @@ const LandingPageItem = ({ name, price, image, id }) => {
     
   return (
     <Link
-      to={`/view/${id}`}
+      to={`/homepage/`}
       className="bg-white hover:scale-105 hover:duration-500 hover:ease-in-out cursor-pointer p-2 min-h-[391px] w-[300px] rounded-xl shadow-[0px_1px_7.2px_-2px_rgba(0,_0,_0,_0.25)]"
     >
       <img src={image} alt="" className="h-[70%] object-cover" />

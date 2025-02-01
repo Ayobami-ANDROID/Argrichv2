@@ -127,7 +127,7 @@ const GetProductBySearch = () => {
                                             <li>- Try searching with short and simple keywords</li>
                                             <li>- Try searching more general terms(related to Agriculture) - you can then filter the search results</li>
                                         </ul>
-                                        <Link to="/" className='bg-[#005C2D] text-[#FFFFFF] font-manrope rounded-[5px] px-8 py-4 mt-4'>Go To HomePage</Link>
+                                        <Link to="/homepage" className='bg-[#005C2D] text-[#FFFFFF] font-manrope rounded-[5px] px-8 py-4 mt-4'>Go To HomePage</Link>
                                     </div>
                                 </div>
                             ) : (

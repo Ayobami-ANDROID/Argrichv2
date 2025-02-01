@@ -52,6 +52,8 @@ export const loginWithGoogle = createAsyncThunk(
   "accounts/google/",
   async (userData, thunkAPI) => {
     secureLocalStorage.clear();
+   
+    secureLocalStorage.setItem("email", userData.email);
     try {
       const response = await authService.google(userData);
       return response;
@@ -226,11 +228,11 @@ const authSlice = createSlice({
       .addCase(loginWithGoogle.fulfilled, (state, action) => {
         state.isLoading = false;
         
-        state.user = action.payload.user;
-        state.token = action.payload.tokens;
+        state.user = action.payload
+        state.token = action.payload;
         
-        secureLocalStorage.setItem("token", action.payload.tokens);
-        secureLocalStorage.setItem("user", action.payload.user);
+        secureLocalStorage.setItem("token", action.payload);
+        secureLocalStorage.setItem("user", action.payload);
       })
       .addCase(loginWithGoogle.rejected, (state, action) => {
         state.isLoading = false;

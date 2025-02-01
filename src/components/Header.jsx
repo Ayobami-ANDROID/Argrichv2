@@ -33,6 +33,7 @@ const Header = () => {
 
   const page_size = 6; // Increased page_size for better pagination example
   const [currentPage, setCurrentPage] = useState(1);
+  
   const { category } = useSelector((state) => state.category);
   const { cart, count } = useSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);

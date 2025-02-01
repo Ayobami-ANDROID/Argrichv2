@@ -65,6 +65,10 @@ export const deleteUserProfile = createAsyncThunk(
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
       }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }
@@ -90,6 +94,10 @@ export const changePassword = createAsyncThunk(
         toast.error(error?.response?.data?.detail)
         window.location.replace('/login')
     }
+    else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+      toast.error(error?.response?.data?.code)
+      window.location.replace('/login')
+  }
     else {
         toast.error(error?.response?.data?.detail || 'An error Occured')
     }

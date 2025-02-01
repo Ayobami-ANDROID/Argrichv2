@@ -28,7 +28,7 @@ const Footer = () => {
           <div className="flex flex-col">
             <h1  className="text-[#7CD032] font-bold mb-2">Categories</h1>
 
-            <ul>
+            <ul className="flex flex-col">
             {category.map((item,index) => (
                 <Link to={`/homepage/category/${item.category}`} key={index}>{item.category}</Link>
               ))}

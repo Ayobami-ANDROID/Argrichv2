@@ -116,7 +116,7 @@ const Checkout = () => {
         const popup = new PaystackPop()
         popup.resumeTransaction(result.access_code, {
           onSuccess: () => {
-              dispatch(createOrder(body));
+               dispatch(createOrder(body)).unwrap();
               navigate('/homepage/cart');
           },
           onCancel: () => {

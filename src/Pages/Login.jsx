@@ -33,6 +33,7 @@ const Login = () => {
     validationSchema: signinValidate,
     onSubmit: async (values) => {
       secureLocalStorage.setItem("email", values.email)
+      
       dispatch(authReset());
       try {
 
@@ -57,9 +58,10 @@ const Login = () => {
         })).unwrap();
         console.log(response)
         secureLocalStorage.setItem("token", response);
+        // secureLocalStorage.setItem("user", response.user);
         navigate('/homepage')
         
-        console.log(response.data);
+       
       } catch (error) {
         console.error('Authentication failed', error);
       }

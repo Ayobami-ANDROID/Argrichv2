@@ -22,6 +22,10 @@ export const getCart = createAsyncThunk(
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
       }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }
@@ -45,6 +49,10 @@ export const postCart = createAsyncThunk(
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
       }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }
@@ -68,6 +76,10 @@ export const putCart = createAsyncThunk(
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
       }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }
@@ -92,6 +104,10 @@ export const deleteCart = createAsyncThunk(
           toast.error(error?.response?.data?.detail)
           window.location.replace('/login')
       }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
       else {
           toast.error(error?.response?.data?.detail || 'An error Occured')
       }

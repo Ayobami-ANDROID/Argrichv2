@@ -103,7 +103,7 @@ const GetProduct = () => {
 
   const relatedProducts = products?.filter((item) => item.id !== product?.id);
   return (
-    <div className="px-20 py-10 bg-[#F5F5F5] ">
+    <div className="lg:px-20 px-8 py-10 bg-[#F5F5F5] ">
 
       <div className="flex gap-x-4 mb-5">
         <button

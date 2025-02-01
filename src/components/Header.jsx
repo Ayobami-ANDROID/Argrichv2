@@ -218,17 +218,18 @@ const Header = () => {
                         my Accounts
                       </a>
                       <a
-                        onClick={(e) => handleLinkClick(e, "/cart")}
-                        className=" lg:hidden sm:flex items-center text-[#000] cu  hover:text-[#008A2F] transition cursor-pointer relative "
+                        onClick={(e) => handleLinkClick(e, "/homepage/cart")}
+                        className=" lg:hidden flex items-center text-[#000] cu  hover:text-[#008A2F] transition cursor-pointer relative "
                       >
                         <CiShoppingCart size={"1.5em"} className="mr-4" />
 
-                        <div className="sm:block xs:hidden">Cart</div>
+                        <div className="">Cart</div>
                         {cart.length <= 0 ? (
                           ""
                         ) : (
                           <div className="w-6 h-6 bg-[#008A2F] rounded-full absolute top-[-45%] right-[30%] text-center  text-white">
                             {" "}
+
                             {cart.length}
                           </div>
                         )}

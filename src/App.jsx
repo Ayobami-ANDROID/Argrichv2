@@ -30,6 +30,7 @@ import Orders from "./Pages/Orders";
 import Checkout from "./Pages/Checkout";
 import FeedbackPolicy from "./Pages/Feedback";
 import ReturnPolicy from "./Pages/ReturnPolicy";
+import AppNavigationHelp from "./Pages/AppNavigation";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/feedback" element={<FeedbackPolicy/>}/>
         <Route path="/return-policy" element={<ReturnPolicy/>}/>
+        <Route path="/help" element={<AppNavigationHelp/>}/>
         {/* <Route path="/account" element={<AccountLayout />} /> */}
         <Route path="/account" element={<AccountLayout />}>
           <Route path="" element={<Account />} />

@@ -51,6 +51,7 @@ const Footer = () => {
             <ul className="flex flex-col">
               <Link to="/feedback">Feedback</Link>
               <Link to="/return-policy">Return Policy</Link>
+              <Link to="/help">Help Center</Link>
               {/* <li>Track Orders</li>
               <li>Delivery Coverage</li> */}
               {/* <li>Contact Us</li> */}

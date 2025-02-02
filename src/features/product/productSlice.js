@@ -44,7 +44,12 @@ export const getInitializePayment = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      } 
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
@@ -68,7 +73,12 @@ export const getSingleProduct = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      } 
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
@@ -93,7 +103,12 @@ export const createOrder = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      }
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    } 
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
@@ -117,7 +132,12 @@ export const getOrder = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      } 
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
@@ -141,7 +161,13 @@ export const getOrderById = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      
+      } 
+      else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    }
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
@@ -165,7 +191,12 @@ export const getSearchProduct = createAsyncThunk(
       ) {
         toast.error(error?.response?.data?.detail);
         window.location.replace("/login");
-      } else {
+      } else if (error?.response?.data?.detail === "Given token not valid for any token type") {
+        toast.error(error?.response?.data?.code)
+        window.location.replace('/login')
+    } 
+      
+      else {
         toast.error(error?.response?.data?.detail || "An error Occured");
       }
       return thunkAPI.rejectWithValue(
